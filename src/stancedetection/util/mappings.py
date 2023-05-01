@@ -88,6 +88,11 @@ TASK_MAPPINGS = {
         "loader": data_loaders.StanceLoader,
         "id2label": {0: "comment", 1: "refute", 2: "support", 3: "unrelated"},
     },
+    "pref": {
+        "task_dir": "pref",
+        "loader": data_loaders.StanceLoader,
+        "id2label": {0: "support", 1: "deny", 2: "comment"}
+    }
 }
 
 DOMAIN_TASK_MAPPINGS = {
@@ -116,6 +121,7 @@ DOMAIN_TASK_MAPPINGS = {
         "argmin",
         "vast",
         "ibmcs",
+        "pref",
     ],
 }
 
@@ -136,6 +142,7 @@ POSITIVE_LABELS = {
     "wtwt__support",
     "rumor__endorse",
     "covidlies__positive",
+    "pref__support",
 }
 
 NEGATIVE_LABELS = {
@@ -156,6 +163,7 @@ NEGATIVE_LABELS = {
     "wtwt__refute",
     "rumor__deny",
     "covidlies__negative",
+    "pref__deny",
 }
 
 DISCUSS_LABELS = {
@@ -175,6 +183,7 @@ OTHER_LABELS = {
     "mtsd__NONE",
     "wtwt__unrelated",
     "rumor__unrelated",
+    "pref__comment",
 }
 
 NEUTRAL_LABELS = {
@@ -233,4 +242,7 @@ RELATED_TASK_MAP = {
     "wtwt__unrelated": OTHER_LABELS,
     "covidlies__positive": POSITIVE_LABELS,
     "covidlies__negative": NEGATIVE_LABELS,
+    "pref__support": POSITIVE_LABELS,
+    "pref__deny": NEGATIVE_LABELS,
+    "pref__comment": OTHER_LABELS,
 }
