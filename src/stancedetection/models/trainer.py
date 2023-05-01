@@ -242,8 +242,9 @@ def create_datasets(args, tokenizer, model_config):
     merged_datasets = {}
     for k in list(datasets.keys()):
         subset: pd.DataFrame = pd.concat(datasets[k], axis=0)
-        subset["label"] = subset.apply(task_to_global_label, axis=1, label2id=labelmaps["label2id"])
-        merged_datasets[k] = subset
+        if not subset.empty:
+            subset["label"] = subset.apply(task_to_global_label, axis=1, label2id=labelmaps["label2id"])
+            merged_datasets[k] = subset
 
     logger.info("  Label to ID mappings for the tasks:")
     logger.info(json.dumps(labelmaps, sort_keys=True, indent=2))
@@ -893,7 +894,7 @@ def main():
             )
 
     if args.do_eval:
-        evaluate_and_export(model, data_iters["val"], "val", args)
+        #evaluate_and_export(model, data_iters["val"], "val", args)
         evaluate_and_export(model, data_iters["test"], "test", args)
 
 
